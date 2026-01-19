@@ -21,7 +21,7 @@ import {
 // 稳定的 Logo 数据
 const LOGOS = {
   BOC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAANlBMVEVHcEwdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpb///9yis80AAAAEXRSTlMA9v72/v7+/v79/f39/f399fX18/Pv70gAAAFlSURBVFjD7dbXcsIwEATQJSG9994LhPT+/89shEAYMGYscXAn88LInSzdBUn5t8SQU66Y0pS4Rk65YkpTy8vH+fG1Wl6uL6uX7e9D9vM145Uv8PqB8fN51pY38No7fL5X9rGBeNn/uW2gYvTz1Gf55+mPrYFrz7uX1kCn09m9tAYm6O/TGqh3OK61BhqdjuvWQKfTeWkN1Dsc11oDjc7Ica010OiMHNdaA43OyHGtNdDojBzXWgONzsjtWmug2ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ugM7L9AdlH8/A6yV/oAAAAAElFTkSuQmCC",
-  SC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEVHcEydzP/09f////9MmMz///89l8zU1f98p/9vof9In8xVndBAnsy20f9VndC70v9VndD09f89l8ypzuj///98p89Vncy70v89l8ypzun09f9MmMz///89l8ypzun09f/09f/09f/09f/09f92n84vAAAAH3RSTlMA/v7+/v7+9vXv7+fPz8/Pz5+fn5+fj49/f39/f38fD/Y+AAACGUlEQVRYw+2V2XaiSBCGKVREBQVREBfUuMaYmGTm/V9mU63ZRE0mOfdp8m7O6mI/f9Vf1V3Anz6Uf06y0YI/95I6Y0XzSreL3W77SreL7W6bYofp9pXatXWq/W6baofpYbtL77vtd9tUO0wP26f2vG3X6YbpYfu9XfX6Xp9qh+lh66/be32vT7XD9LD1un5v9r+T7TA9bJ/v680T96m2mB62f9yvP5N6VHtID1vH9uWJ+8t4v9v2O7YvT9yfK6v70xP3l/F+t+13bI89cX+urO5PT9zvy6v7y3i/27Yv9+X7v6X8v7m+vE88Xn//t5SvP/990uUv667L97e7Pq97SZe7vlj6Xf3u7jNd7nJpX63f1e98v8ulS7+X3un3vX669Dvd7/u97vtPl97p973/vUuXfqf7ff/u6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f66f9Xfrf0uUv6X7f/W4/Wrr0S7p99/vd0+Uv6fbd7/v3S5f+K/Xf/69/Xv6X73+P+7888f9H/K9Y/B8T/mcu/scZ/9f19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1/6O/L/8Byt4C8h+X2M8AAAAASUVORK5CYII=",
+  SC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEVHcEydzP/09f////9MmMz///89l8zU1f98p/9vof9In8xVndBAnsy20f9VndC70v9VndD09f89l8ypzuj///98p89Vncy70v89l8ypzun09f9MmMz///89l8ypzun09f/09f/09f/09f/09f92n84vAAAAH3RSTlMA/v7+/v7+9vXv7+fPz8/Pz5+fn5+fj49/f39/f38fD/Y+AAACGUlEQVRYw+2V2XaiSBCGKVREBQVREBfUuMaYmGTm/V9mU63ZRE0mOfdp8m7O6mI/f9Vf1V3Anz6Uf06y0YI/95I6Y0XzSreL3W77SreL7W6bYofp9pXatXWq/W6baofpYbtL77vtd9tUO0wP26f2vG3X6YbpYfu9XfX6Xp9qh+lh66/be32vT7XD9LD1un5v9r+T7TA9bJ/v680T96m2mB62f9yvP5N6VHtID1vH9uWJ+8t4v9v2O7YvT9yfK6v70xP3l/F+t+13bI89cX+urO5PT9zvy6v7y3i/27Yv9+X7v6X8v7m+vE88Xn//t5SvP/990uUv667L97e7Pq97SZe7vlj6Xf3u7jNd7nJpX63f1e98v8ulS7+X3un3vX669Dvd7/u97vtPl97p973/vUuXfqf7ff/u6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f66f9Xfrf0uUv6X7f/W4/Wrr0S7p99/vd0+Uv6fbd7/v3S5f+K/Xf/69/Xv6X73+P+7888f9H/K9Y/B8T/mcu/scZ/9f19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1/6O/L/8Byt4C8h+X2M8AAAAASUVORK5CYII=",
   HSBC: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/HSBC_logo_%282018%29.svg/2560px-HSBC_logo_%282018%29.svg.png"
 };
 
@@ -162,11 +162,10 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 6. ★ 新增：保险建议书推荐板块 (复刻截图样式) ★ */}
+      {/* 6. ★ 保险建议书推荐板块 (根据最新截图更新样式，仅展示) ★ */}
       <div className="px-4">
         <div 
-          onClick={() => navigate('/proposal')}
-          className="bg-white rounded-[28px] overflow-hidden shadow-sm border border-gray-50 flex items-stretch h-36 active:scale-[0.98] transition-transform cursor-pointer group"
+          className="bg-white rounded-[28px] overflow-hidden shadow-sm border border-gray-50 flex items-stretch h-36"
         >
           {/* 左侧文字区 */}
           <div className="flex-1 p-6 flex flex-col justify-between">
@@ -176,16 +175,16 @@ const Home: React.FC = () => {
                 1对1顾问 · 不花钱 · 无强制购买
               </p>
             </div>
-            <button className="w-28 bg-orange-500 text-white py-2.5 rounded-full text-xs font-bold shadow-lg shadow-orange-100 active:scale-95 transition-transform">
+            <button className="w-28 bg-gradient-to-r from-orange-400 to-orange-200 text-white py-2.5 rounded-full text-xs font-bold shadow-md shadow-orange-100/40">
               立即获取
             </button>
           </div>
           {/* 右侧图片区 */}
           <div className="w-32 relative overflow-hidden">
              <img 
-               src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=300&auto=format&fit=crop" 
-               className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-               alt="Proposal Background"
+               src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop" 
+               className="absolute inset-0 w-full h-full object-cover"
+               alt="Landscape Background"
              />
              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10"></div>
           </div>

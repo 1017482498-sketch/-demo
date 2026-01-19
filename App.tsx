@@ -14,7 +14,10 @@ import BottomNav from './components/BottomNav';
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen max-w-md mx-auto bg-gray-50 shadow-xl relative overflow-hidden">
+      <div className="flex flex-col min-h-screen max-w-md mx-auto bg-gray-50 shadow-xl relative overflow-x-hidden">
+        {/* 全局水印层 */}
+        <div className="watermark-overlay"></div>
+
         {/* Main Content Area */}
         <main className="flex-1 pb-20 overflow-y-auto hide-scrollbar">
           <Routes>
@@ -30,7 +33,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
 
-        {/* Persistent Navigation */}
+        {/* Persistent Navigation - Now uses 'fixed' internally */}
         <BottomNav />
       </div>
     </Router>
