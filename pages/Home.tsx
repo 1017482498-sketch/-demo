@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   ShieldCheck, 
@@ -18,11 +18,14 @@ import {
   Coins
 } from 'lucide-react';
 
-// 稳定的资源数据
+// 使用最稳定的公共资源链接，确保在中国银行和渣打银行等 Logo 正常显示
 const LOGOS = {
-  BOC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAANlBMVEVHcEwdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpb///9yis80AAAAEXRSTlMA9v72/v7+/v79/f39/f399fX18/Pv70gAAAFlSURBVFjD7dbXcsIwEATQJSG9994LhPT+/89shEAYMGYscXAn88LInSzdBUn5t8SQU66Y0pS4Rk65YkpTy8vH+fG1Wl6uL6uX7e9D9vM145Uv8PqB8fN51pY38No7fL5X9rGBeNn/uW2gYvTz1Gf55+mPrYFrz7uX1kCn09m9tAYm6O/TGqh3OK61BhqdjuvWQKfTeWkN1Dsc11oDjc7Ica010OiMHNdaA43OyHGtNdDojBzXWgONzsjtWmug2ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ugM7L9AdlH8/A6yV/oAAAAAElFTkSuQmCC",
-  SC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEVHcEydzP/09f////9MmMz///89l8zU1f98p/9vof9In8xVndBAnsy20f9VndC70v9VndD09f89l8ypzuj///98p89Vncy70v89l8ypzun09f9MmMz///89l8ypzun09f/09f/09f/09f/09f92n84vAAAAH3RSTlMA/v7+/v7+9vXv7+fPz8/Pz5+fn5+fj49/f39/f38fD/Y+AAACGUlEQVRYw+2V2XaiSBCGKVREBQVREBfUuMaYmGTm/V9mU63ZRE0mOfdp8m7O6mI/f9Vf1V3Anz6Uf06y0YI/95I6Y0XzSreL3W77SreL7W6bYofp9pXatXWq/W6baofpYbtL77vtd9tUO0wP26f2vG3X6YbpYfu9XfX6Xp9qh+lh66/be32vT7XD9LD1un5v9r+T7TA9bJ/v680T96m2mB62f9yvP5N6VHtID1vH9uWJ+8t4v9v2O7YvT9yfK6v70xP3l/F+t+13bI89cX+urO5PT9zvy6v7y3i/27Yv9+X7v6X8v7m+vE88Xn//t5SvP/990uUv667L97e7Pq97SZe7vlj6Xf3u7jNd7nJpX63f1e98v8ulS7+X3un3vX669Dvd7/u97vtPl97p973/vUuXfqf7ff/u6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f66f9Xfrf0uUv6X7f/W4/Wrr0S7p99/vd0+Uv6fbd7/v3S5f+K/Xf/69/Xv6X73+P+7888f9H/K9Y/B8T/mcu/scZ/9f19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1/6O/L/8Byt4C8h+X2M8AAAAASUVORK5CYII=",
-  HSBC: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/HSBC_logo_%282018%29.svg/2560px-HSBC_logo_%282018%29.svg.png"
+  // 中国银行经典红标
+  BOC: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Bank_of_China_logo.svg/512px-Bank_of_China_logo.svg.png",
+  // 渣打银行 2021 新版蓝绿标
+  SC: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Standard_Chartered_%282021%29.svg/512px-Standard_Chartered_%282021%29.svg.png",
+  // 汇丰银行红白标
+  HSBC: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/HSBC_logo_%282018%29.svg/512px-HSBC_logo_%282018%29.svg.png"
 };
 
 const Home: React.FC = () => {
@@ -33,19 +36,22 @@ const Home: React.FC = () => {
       name: "中国银行 (香港)",
       logo: LOGOS.BOC,
       tags: ['跨境便利', '中银理财'],
-      color: "border-red-100"
+      brandColor: "bg-[#B31F24]", // 中行红
+      borderColor: "border-red-100"
     },
     {
       name: "汇丰银行 (HSBC)",
       logo: LOGOS.HSBC,
       tags: ['全球通行', '卓越理财'],
-      color: "border-red-50"
+      brandColor: "bg-[#DB0011]", // 汇丰红
+      borderColor: "border-red-50"
     },
     {
       name: "渣打银行 (SC)",
       logo: LOGOS.SC,
       tags: ['快速审批', '优先理财'],
-      color: "border-green-50"
+      brandColor: "bg-[#008F45]", // 渣打绿
+      borderColor: "border-green-50"
     }
   ];
 
@@ -85,7 +91,6 @@ const Home: React.FC = () => {
       <div className="px-4">
         <div className="relative h-48 rounded-3xl overflow-hidden text-white shadow-2xl group cursor-pointer active:scale-[0.99] transition-transform">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b4b] via-[#1a2b4b] to-[#2c4a85]"></div>
-          
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#c5a059] opacity-10 blur-[60px] rounded-full"></div>
           <div className="relative p-6 flex flex-col justify-center h-full space-y-4">
             <div className="space-y-0.5">
@@ -106,39 +111,11 @@ const Home: React.FC = () => {
 
       {/* 4. Main Grid Navigation */}
       <div className="px-4 grid grid-cols-5 gap-2 text-center pt-2">
-        <NavIcon 
-          icon={<FileText className="w-6 h-6" />} 
-          label="保险建议书" 
-          color="bg-orange-50" 
-          textColor="text-orange-500" 
-        />
-        <NavIcon 
-          icon={<ShoppingBag className="w-6 h-6" />} 
-          label="保险商城" 
-          color="bg-orange-50" 
-          textColor="text-orange-500" 
-          onClick={() => navigate('/insurance-mall')} 
-        />
-        <NavIcon 
-          icon={<ShieldCheck className="w-6 h-6" />} 
-          label="我的保单" 
-          color="bg-blue-50" 
-          textColor="text-blue-500" 
-          onClick={() => navigate('/my-policy')} 
-        />
-        <NavIcon 
-          icon={<TrendingUp className="w-6 h-6" />} 
-          label="基金服务" 
-          color="bg-indigo-50" 
-          textColor="text-indigo-500" 
-          onClick={() => navigate('/fund-services')} 
-        />
-        <NavIcon 
-          icon={<CreditCard className="w-6 h-6" />} 
-          label="港卡服务" 
-          color="bg-amber-50" 
-          textColor="text-amber-600" 
-        />
+        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" />
+        <NavIcon icon={<ShoppingBag className="w-6 h-6" />} label="保险商城" color="bg-orange-50" textColor="text-orange-500" onClick={() => navigate('/insurance-mall')} />
+        <NavIcon icon={<ShieldCheck className="w-6 h-6" />} label="我的保单" color="bg-blue-50" textColor="text-blue-500" onClick={() => navigate('/my-policy')} />
+        <NavIcon icon={<TrendingUp className="w-6 h-6" />} label="甄选基金" color="bg-indigo-50" textColor="text-indigo-500" onClick={() => navigate('/fund-services')} />
+        <NavIcon icon={<CreditCard className="w-6 h-6" />} label="港卡服务" color="bg-amber-50" textColor="text-amber-600" />
       </div>
 
       {/* 5. Insurance Categories */}
@@ -151,31 +128,21 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 6. 续费宝宣传板块 (按用户截图高度还原) */}
+      {/* 6. Promotional Banner */}
       <div className="px-4">
         <div 
           onClick={() => navigate('/fund-detail')}
           className="bg-white rounded-[28px] overflow-hidden shadow-sm border border-gray-50 flex items-stretch h-[140px] cursor-pointer active:scale-[0.99] transition-transform"
         >
-          {/* 左侧文字区 */}
           <div className="flex-1 p-6 flex flex-col justify-between">
             <div className="space-y-1.5">
               <h3 className="text-[20px] font-bold text-gray-800 tracking-tight">续费宝</h3>
-              <p className="text-[11px] text-gray-400 font-medium tracking-tight whitespace-nowrap">
-                提前规划 · 自动缴费 · 灵活增值
-              </p>
+              <p className="text-[11px] text-gray-400 font-medium tracking-tight whitespace-nowrap">提前规划 · 自动缴费 · 灵活增值</p>
             </div>
-            <button className="w-[110px] bg-[#ff7b1c] text-white py-2.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/10">
-              立即了解
-            </button>
+            <button className="w-[110px] bg-[#ff7b1c] text-white py-2.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/10">立即了解</button>
           </div>
-          {/* 右侧图片区 */}
           <div className="w-[140px] relative overflow-hidden">
-             <img 
-               src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=400&auto=format&fit=crop" 
-               className="absolute inset-0 w-full h-full object-cover"
-               alt="Nature Background"
-             />
+             <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=400&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover" alt="Nature" />
              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/5"></div>
           </div>
         </div>
@@ -195,9 +162,10 @@ const Home: React.FC = () => {
             <BankCard 
               key={index}
               name={bank.name} 
-              logo={bank.logo} 
+              logo={bank.logo}
               tags={bank.tags} 
-              borderColor={bank.color}
+              brandColor={bank.brandColor}
+              borderColor={bank.borderColor}
             />
           ))}
         </div>
@@ -218,7 +186,8 @@ const Home: React.FC = () => {
   );
 };
 
-// 辅助子组件
+// --- Helper Components ---
+
 const TrustItem: React.FC<{ icon: React.ReactNode, label: string }> = ({ icon, label }) => (
   <div className="flex items-center space-x-1.5 text-[10px] text-gray-500 font-bold">
     <div className="text-[#c5a059]">{icon}</div>
@@ -233,51 +202,65 @@ const BannerTag: React.FC<{ text: string }> = ({ text }) => (
   </div>
 );
 
-const NavIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string, onClick?: () => void, disabled?: boolean }> = ({ icon, label, color, textColor, onClick, disabled }) => (
-  <button 
-    onClick={disabled ? undefined : onClick} 
-    className={`flex flex-col items-center space-y-2.5 group ${disabled ? 'cursor-default opacity-50' : 'cursor-pointer'}`}
-  >
-    <div className={`${color} ${textColor} p-4 rounded-[22px] ${!disabled && 'group-active:scale-90'} transition-all shadow-sm border border-white`}>
-      {icon}
-    </div>
-    <span className={`text-[10px] font-bold ${disabled ? 'text-gray-400' : 'text-gray-600'} whitespace-nowrap tracking-tight`}>{label}</span>
+const NavIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string, onClick?: () => void }> = ({ icon, label, color, textColor, onClick }) => (
+  <button onClick={onClick} className="flex flex-col items-center space-y-2.5 group cursor-pointer">
+    <div className={`${color} ${textColor} p-4 rounded-[22px] group-active:scale-90 transition-all shadow-sm border border-white`}>{icon}</div>
+    <span className="text-[10px] font-bold text-gray-600 whitespace-nowrap tracking-tight">{label}</span>
   </button>
 );
 
 const TypeIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string }> = ({ icon, label, color, textColor }) => (
   <button className="flex flex-col items-center space-y-2 group">
-    <div className={`${color} ${textColor} p-4 rounded-full group-active:scale-90 transition-all shadow-sm border border-white`}>
-      {icon}
-    </div>
+    <div className={`${color} ${textColor} p-4 rounded-full group-active:scale-90 transition-all shadow-sm border border-white`}>{icon}</div>
     <span className="text-[11px] font-bold text-gray-700 whitespace-nowrap">{label}</span>
   </button>
 );
 
-const BankCard: React.FC<{ name: string, logo: string, tags: string[], borderColor: string }> = ({ name, logo, tags, borderColor }) => (
-  <div className={`flex items-center justify-between p-4 bg-white rounded-3xl border-2 ${borderColor} shadow-sm active:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer group`}>
-    <div className="flex items-center space-x-4">
-      <div className="w-14 h-14 rounded-2xl overflow-hidden bg-white border border-gray-100 flex items-center justify-center p-1.5 flex-shrink-0 shadow-inner">
-        <img src={logo} alt={name} className="max-w-full max-h-full object-contain" />
-      </div>
-      <div className="flex flex-col space-y-1.5">
-        <span className="text-[15px] font-bold text-gray-800 tracking-tight">{name}</span>
-        <div className="flex flex-wrap gap-1.5">
-          {tags.map(tag => (
-            <span key={tag} className="text-[9px] px-2.5 py-1 bg-gray-50 text-gray-400 rounded-lg font-bold border border-gray-100/50">
-              {tag}
-            </span>
-          ))}
+const BankCard: React.FC<{ name: string, logo: string, tags: string[], brandColor: string, borderColor: string }> = ({ name, logo, tags, brandColor, borderColor }) => {
+  const [imgError, setImgError] = useState(false);
+  // 获取银行名称第一个字作为备选
+  const firstChar = name.charAt(0);
+
+  return (
+    <div className={`flex items-center justify-between p-4 bg-white rounded-3xl border-2 ${borderColor} shadow-sm active:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer group`}>
+      <div className="flex items-center space-x-4">
+        {/* Logo Container */}
+        <div className="w-12 h-12 rounded-2xl overflow-hidden bg-white border border-gray-100 flex items-center justify-center p-1.5 flex-shrink-0 shadow-inner relative">
+          {!imgError ? (
+            <img 
+              src={logo} 
+              alt={name} 
+              className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-100" 
+              onError={() => {
+                console.error(`Failed to load logo for ${name}`);
+                setImgError(true);
+              }}
+            />
+          ) : (
+            <div className={`w-full h-full ${brandColor} flex items-center justify-center text-white font-bold text-lg rounded-xl shadow-inner`}>
+              {firstChar}
+            </div>
+          )}
+        </div>
+        {/* Text Area */}
+        <div className="flex flex-col space-y-1">
+          <span className="text-[15px] font-bold text-gray-800 tracking-tight">{name}</span>
+          <div className="flex flex-wrap gap-1.5">
+            {tags.map(tag => (
+              <span key={tag} className="text-[9px] px-2.5 py-0.5 bg-gray-50 text-gray-400 rounded-lg font-bold border border-gray-100/50">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
+      {/* Action Area */}
+      <div className="flex items-center space-x-2">
+        <button className="text-[11px] text-white bg-[#1a2b4b] px-4 py-2 rounded-xl font-bold shadow-lg shadow-blue-900/10 active:scale-90 transition-transform">申请</button>
+        <ChevronRight className="w-5 h-5 text-gray-200" />
+      </div>
     </div>
-    <div className="flex items-center space-x-2">
-      <button className="text-[11px] text-white bg-[#1a2b4b] px-4 py-2 rounded-xl font-bold shadow-lg shadow-blue-900/10 active:scale-90 transition-transform">
-        申请
-      </button>
-      <ChevronRight className="w-5 h-5 text-gray-200" />
-    </div>
-  </div>
-);
+  );
+};
 
 export default Home;

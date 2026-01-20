@@ -16,7 +16,7 @@ const FundServices: React.FC = () => {
       id: 1,
       title: "易方达 (香港) 美元货币市场基金B-USD累积",
       cutoff: "认购及赎回截止时间: 每个交易日13:50",
-      returnRate: "+8.13%",
+      returnRate: "+3.75%",
       returnLabel: "七日年化",
       fee: "认购费率1%",
       minAmount: "100美元起投",
@@ -27,7 +27,7 @@ const FundServices: React.FC = () => {
       id: 2,
       title: "易方达 (香港) 美元货币市场基金I-USD累积",
       cutoff: "认购及赎回截止时间: 每个交易日10:59",
-      returnRate: "+8.13%",
+      returnRate: "+4.12%",
       returnLabel: "七日年化",
       fee: "认购费率0",
       minAmount: "1000美元起投",
@@ -38,7 +38,7 @@ const FundServices: React.FC = () => {
       id: 3,
       title: "易方达 (香港) 美元货币市场基金C-USD累积",
       cutoff: "认购及赎回截止时间: 每个交易日10:59",
-      returnRate: "+8.13%",
+      returnRate: "+4.05%",
       returnLabel: "七日年化",
       fee: "认购费率3%",
       minAmount: "1美元起投",
@@ -49,7 +49,7 @@ const FundServices: React.FC = () => {
       id: 4,
       title: "博时美元货币市场基金N-USD派息",
       cutoff: "认购及赎回截止时间: 每个交易日13:50",
-      returnRate: "0.00%",
+      returnRate: "+3.95%",
       returnLabel: "七日年化",
       fee: "认购费率0.6%",
       minAmount: "0.1美元起投",
@@ -76,7 +76,7 @@ const FundServices: React.FC = () => {
         >
           <ArrowLeft className="w-6 h-6" />
         </button>
-        <h1 className="text-[17px] font-bold text-gray-800 absolute left-0 right-0 text-center pointer-events-none">基金服务</h1>
+        <h1 className="text-[17px] font-bold text-gray-800 absolute left-0 right-0 text-center pointer-events-none">甄选基金</h1>
         <div className="relative z-[70] flex space-x-1 items-center p-2 -mr-2 cursor-pointer active:opacity-60">
            <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
            <div className="w-1.5 h-1.5 bg-black rounded-full"></div>
@@ -168,7 +168,7 @@ const FundServices: React.FC = () => {
         {/* Footer Disclaimer */}
         <div className="pt-10 pb-16 text-center space-y-1.5">
           <p className="text-[11px] text-gray-400 px-10 leading-relaxed">
-            基金服务由 XX 提供，不构成任何投资建议。
+            甄选基金服务由 XX 提供，不构成任何投资建议。
           </p>
           <p className="text-[11px] text-gray-400">
             基金投资有风险，投资须谨慎。

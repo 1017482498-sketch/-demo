@@ -16,7 +16,7 @@ const BottomNav: React.FC = () => {
   const navItems = [
     { id: 'home', icon: <Home className="w-5 h-5" />, label: '首页', path: '/' },
     { id: 'mall', icon: <Shield className="w-5 h-5" />, label: '保险商城', path: '/insurance-mall' },
-    { id: 'funds', icon: <BarChart3 className="w-5 h-5" />, label: '基金服务', path: '/fund-services' },
+    { id: 'funds', icon: <BarChart3 className="w-5 h-5" />, label: '甄选基金', path: '/fund-services' },
     { id: 'me', icon: <User className="w-5 h-5" />, label: '我的', path: '/me' },
   ];
 
