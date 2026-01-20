@@ -11,17 +11,17 @@ import {
   CreditCard,
   ShoppingBag,
   TrendingUp,
-  Baby,
   User,
   Home as HomeIcon,
   Stethoscope,
-  BellRing
+  BellRing,
+  Coins
 } from 'lucide-react';
 
-// 稳定的 Logo 数据
+// 稳定的资源数据
 const LOGOS = {
-  BOC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAANlBMVEVHcEwdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpb///9yis80AAAAEXRSTlMA9v72/v7+/v79/f39/f399fX18/Pv70gAAAFlSURBVFjD7dbXcsIwEATQJSG9994LhPT+/89shEAYMGYscXAn88LInSzdBUn5t8SQU66Y0pS4Rk65YkpTy8vH+fG1Wl6uL6uX7e9D9vM145Uv8PqB8fN51pY38No7fL5X9rGBeNn/uW2gYvTz1Gf55+mPrYFrz7uX1kCn09m9tAYm6O/TGqh3OK61BhqdjuvWQKfTeWkN1Dsc11oDjc7Ica010OiMHNdaA43OyHGtNdDojBzXWgONzsjtWmug2ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ugM7L9AdlH8/A6yV/oAAAAAElFTkSuQmCC",
-  SC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEVHcEydzP/09f////9MmMz///89l8zU1f98p/9vof9In8xVndBAnsy20f9VndC70v9VndD09f89l8ypzuj///98p89Vncy70v89l8ypzun09f9MmMz///89l8ypzun09f/09f/09f/09f/09f92n84vAAAAH3RSTlMA/v7+/v7+9vXv7+fPz8/Pz5+fn5+fj49/f39/f38fD/Y+AAACGUlEQVRYw+2V2XaiSBCGKVREBQVREBfUuMaYmGTm/V9mU63ZRE0mOfdp8m7O6mI/f9Vf1V3Anz6Uf06y0YI/95I6Y0XzSreL3W77SreL7W6bYofp9pXatXWq/W6baofpYbtL77vtd9tUO0wP26f2vG3X6YbpYfu9XfX6Xp9qh+lh66/be32vT7XD9LD1un5v9r+T7TA9bJ/v680T96m2mB62f9yvP5N6VHtID1vH9uWJ+8t4v9v2O7YvT9yfK6v70xP3l/F+t+13bI89cX+urO5PT9zvy6v7y3i/27Yv9+X7v6X8v7m+vE88Xn//t5SvP/990uUv667L97e7Pq97SZe7vlj6Xf3u7jNd7nJpX63f1e98v8ulS7+X3un3vX669Dvd7/u97vtPl97p973/vUuXfqf7ff/u6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f66f9Xfrf0uUv6X7f/W4/Wrr0S7p99/vd0+Uv6fbd7/v3S5f+K/Xf/69/Xv6X73+P+7888f9H/K9Y/B8T/mcu/scZ/9f19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1/6O/L/8Byt4C8h+X2M8AAAAASUVORK5CYII=",
+  BOC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAANlBMVEVHcEwdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpYdZpb///9yis80AAAAEXRSTlMA9v72/v7+/v79/f39/f399fX18/Pv70gAAAFlSURBVFjD7dbXcsIwEATQJSG9994LhPT+/89shEAYMGYscXAn88LInSzdBUn5t8SQU66Y0pS4Rk65YkpTy8vH+fG1Wl6uL6uX7e9D9vM145Uv8PqB8fN51pY38No7fL5X9rGBeNn/uW2gYvTz1Gf55+mPrYFrz7uX1kCn09m9tAYm6O/TGqh3OK61BhqdjuvWQKfTeWkN1Dsc11oDjc7Ica010OiMHNdaA43OyHGtNdDojBzXWgONzsjtWmug2ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ug3ZmsW2ugM7L9AdlH8/A6yV/oAAAAAElFTkSuQmCC",
+  SC: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEVHcEydzP/09f////9MmMz///89l8zU1f98p/9vof9In8xVndBAnsy20f9VndC70v9VndD09f89l8ypzuj///98p89Vncy70v89l8ypzun09f9MmMz///89l8ypzun09f/09f/09f/09f/09f92n84vAAAAH3RSTlMA/v7+/v7+9vXv7+fPz8/Pz5+fn5+fj49/f39/f38fD/Y+AAACGUlEQVRYw+2V2XaiSBCGKVREBQVREBfUuMaYmGTm/V9mU63ZRE0mOfdp8m7O6mI/f9Vf1V3Anz6Uf06y0YI/95I6Y0XzSreL3W77SreL7W6bYofp9pXatXWq/W6baofpYbtL77vtd9tUO0wP26f2vG3X6YbpYfu9XfX6Xp9qh+lh66/be32vT7XD9LD1un5v9r+T7TA9bJ/v680T96m2mB62f9yvP5N6VHtID1vH9uWJ+8t4v9v2O7YvT9yfK6v70xP3l/F+t+13bI89cX+urO5PT9zvy6v7y3i/27Yv9+X7v6X8v7m+vE88Xn//t5SvP/990uUv667L97e7Pq97SZe7vlj6Xf3u7jNd7nJpX63f1e98v8ulS7+X3un3vX669Dvd7/u97vtPl97p973/vUuXfqf7ff/u6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f67+Xv7XfX6b7/at9697S5S7T/b59un1v6XKX6X7f66f9Xfrf0uUv6X7f/W4/Wrr0S7p99/vd0+Uv6fbd7/v3S5f+K/Xf/69/Xv6X73+P+7888f9H/K9Y/B8T/mcu/scZ/9f19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX1/6O/L/8Byt4C8h+X2M8AAAAASUVORK5CYII=",
   HSBC: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/HSBC_logo_%282018%29.svg/2560px-HSBC_logo_%282018%29.svg.png"
 };
 
@@ -54,9 +54,6 @@ const Home: React.FC = () => {
       {/* 1. Header Area */}
       <div className="px-4 pt-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-           <div className="w-9 h-9 rounded-xl bg-[#1a2b4b] flex items-center justify-center shadow-lg shadow-blue-900/20">
-              <span className="text-white font-bold text-sm">DC</span>
-           </div>
            <div>
               <h1 className="text-lg font-bold text-[#1a2b4b] leading-tight">德萃财富</h1>
               <p className="text-[9px] text-gray-400 font-medium tracking-tighter uppercase">DC Wealth Management</p>
@@ -86,26 +83,20 @@ const Home: React.FC = () => {
 
       {/* 3. Hero Banner */}
       <div className="px-4">
-        <div className="relative h-48 rounded-3xl overflow-hidden bg-[#1a2b4b] text-white shadow-2xl group cursor-pointer active:scale-[0.99] transition-transform">
+        <div className="relative h-48 rounded-3xl overflow-hidden text-white shadow-2xl group cursor-pointer active:scale-[0.99] transition-transform">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b4b] via-[#1a2b4b] to-[#2c4a85]"></div>
+          
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#c5a059] opacity-10 blur-[60px] rounded-full"></div>
           <div className="relative p-6 flex flex-col justify-center h-full space-y-4">
-            <div className="flex items-center space-x-3">
-                <div className="bg-white/10 backdrop-blur-xl p-2.5 rounded-2xl border border-white/20 shadow-inner">
-                   <div className="w-10 h-10 border-2 border-[#c5a059] rounded flex items-center justify-center">
-                      <span className="text-[#c5a059] font-serif font-bold text-xl">DC</span>
-                   </div>
-                </div>
-                <div className="space-y-0.5">
-                  <h2 className="text-xl font-bold tracking-wide">德萃财富 | DC Wealth</h2>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#c5a059] font-bold opacity-90">Asset Management Service</p>
-                </div>
+            <div className="space-y-0.5">
+              <h2 className="text-xl font-bold tracking-wide">德萃财富 | DC Wealth</h2>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#c5a059] font-bold opacity-90">Asset Management Service</p>
             </div>
             <div className="space-y-1.5">
               <p className="text-xl font-semibold leading-tight">定制您的全球资产配置方案</p>
               <div className="flex space-x-3">
                 <BannerTag text="香港保险" />
-                <BannerTag text="港卡开户" />
+                <BannerTag text="资产管理" />
                 <BannerTag text="环球基金" />
               </div>
             </div>
@@ -113,21 +104,13 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Main Grid Navigation (恢复样式但保持不跳转逻辑) */}
+      {/* 4. Main Grid Navigation */}
       <div className="px-4 grid grid-cols-5 gap-2 text-center pt-2">
         <NavIcon 
           icon={<FileText className="w-6 h-6" />} 
           label="保险建议书" 
           color="bg-orange-50" 
           textColor="text-orange-500" 
-          /* onClick 留空以保持不展示新页面，但移除 disabled 以恢复样式 */
-        />
-        <NavIcon 
-          icon={<ShieldCheck className="w-6 h-6" />} 
-          label="我的保单" 
-          color="bg-blue-50" 
-          textColor="text-blue-500" 
-          onClick={() => navigate('/my-policy')} 
         />
         <NavIcon 
           icon={<ShoppingBag className="w-6 h-6" />} 
@@ -135,6 +118,13 @@ const Home: React.FC = () => {
           color="bg-orange-50" 
           textColor="text-orange-500" 
           onClick={() => navigate('/insurance-mall')} 
+        />
+        <NavIcon 
+          icon={<ShieldCheck className="w-6 h-6" />} 
+          label="我的保单" 
+          color="bg-blue-50" 
+          textColor="text-blue-500" 
+          onClick={() => navigate('/my-policy')} 
         />
         <NavIcon 
           icon={<TrendingUp className="w-6 h-6" />} 
@@ -148,45 +138,45 @@ const Home: React.FC = () => {
           label="港卡服务" 
           color="bg-amber-50" 
           textColor="text-amber-600" 
-          /* onClick 留空以保持不展示新页面，但移除 disabled 以恢复样式 */
         />
       </div>
 
       {/* 5. Insurance Categories */}
       <div className="px-4 py-4 border-y border-gray-100 bg-white">
         <div className="grid grid-cols-4 gap-4">
-          <TypeIcon icon={<Baby className="w-6 h-6" />} label="少儿重疾" color="bg-sky-50" textColor="text-sky-500" />
-          <TypeIcon icon={<User className="w-6 h-6" />} label="成人重疾" color="bg-blue-50" textColor="text-blue-500" />
+          <TypeIcon icon={<Stethoscope className="w-6 h-6" />} label="高端医疗" color="bg-sky-50" textColor="text-sky-500" />
           <TypeIcon icon={<HomeIcon className="w-6 h-6" />} label="养老储蓄" color="bg-indigo-50" textColor="text-indigo-500" />
-          <TypeIcon icon={<Stethoscope className="w-6 h-6" />} label="高端医疗" color="bg-blue-100" textColor="text-blue-600" />
+          <TypeIcon icon={<Coins className="w-6 h-6" />} label="年金险" color="bg-orange-50" textColor="text-orange-500" />
+          <TypeIcon icon={<User className="w-6 h-6" />} label="成人重疾" color="bg-blue-50" textColor="text-blue-500" />
         </div>
       </div>
 
-      {/* 6. ★ 保险建议书推荐板块 (根据最新截图更新样式，仅展示) ★ */}
+      {/* 6. 续费宝宣传板块 (按用户截图高度还原) */}
       <div className="px-4">
         <div 
-          className="bg-white rounded-[28px] overflow-hidden shadow-sm border border-gray-50 flex items-stretch h-36"
+          onClick={() => navigate('/fund-detail')}
+          className="bg-white rounded-[28px] overflow-hidden shadow-sm border border-gray-50 flex items-stretch h-[140px] cursor-pointer active:scale-[0.99] transition-transform"
         >
           {/* 左侧文字区 */}
           <div className="flex-1 p-6 flex flex-col justify-between">
-            <div className="space-y-1">
-              <h3 className="text-lg font-bold text-gray-800 tracking-tight">免费获取保险建议书</h3>
-              <p className="text-[10px] text-gray-400 font-medium tracking-tight">
-                1对1顾问 · 不花钱 · 无强制购买
+            <div className="space-y-1.5">
+              <h3 className="text-[20px] font-bold text-gray-800 tracking-tight">续费宝</h3>
+              <p className="text-[11px] text-gray-400 font-medium tracking-tight whitespace-nowrap">
+                提前规划 · 自动缴费 · 灵活增值
               </p>
             </div>
-            <button className="w-28 bg-gradient-to-r from-orange-400 to-orange-200 text-white py-2.5 rounded-full text-xs font-bold shadow-md shadow-orange-100/40">
-              立即获取
+            <button className="w-[110px] bg-[#ff7b1c] text-white py-2.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/10">
+              立即了解
             </button>
           </div>
           {/* 右侧图片区 */}
-          <div className="w-32 relative overflow-hidden">
+          <div className="w-[140px] relative overflow-hidden">
              <img 
-               src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=400&auto=format&fit=crop" 
+               src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=400&auto=format&fit=crop" 
                className="absolute inset-0 w-full h-full object-cover"
-               alt="Landscape Background"
+               alt="Nature Background"
              />
-             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/10"></div>
+             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/5"></div>
           </div>
         </div>
       </div>

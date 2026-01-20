@@ -8,6 +8,7 @@ import InsuranceMall from './pages/InsuranceMall';
 import ProductDetail from './pages/ProductDetail';
 import ReservationForm from './pages/ReservationForm';
 import FundServices from './pages/FundServices';
+import FundDetail from './pages/FundDetail';
 import Me from './pages/Me';
 import BottomNav from './components/BottomNav';
 
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             <Route path="/product-detail" element={<ProductDetail />} />
             <Route path="/reservation" element={<ReservationForm />} />
             <Route path="/fund-services" element={<FundServices />} />
+            <Route path="/fund-detail" element={<FundDetail />} />
             <Route path="/my-policy" element={<PolicyDetail />} />
             <Route path="/hk-card" element={<PlaceholderPage title="港卡服务" />} />
             <Route path="/proposal" element={<PlaceholderPage title="保险建议书" />} />
