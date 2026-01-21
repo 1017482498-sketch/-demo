@@ -7,7 +7,7 @@ const XufeibaoPoster: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-full min-h-screen bg-[#001838] relative overflow-hidden">
+    <div className="flex flex-col h-full bg-[#001838] relative overflow-hidden">
       {/* 增强背景装饰层 */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#001838] via-[#0b284e] to-[#001838]"></div>
       
@@ -51,14 +51,13 @@ const XufeibaoPoster: React.FC = () => {
           </div>
         </div>
 
-        {/* 丰富后的发光时间轴进度条 - 调整间距和高度 */}
+        {/* 丰富后的发光时间轴进度条 */}
         <div className="w-full mt-10 mb-6 relative h-44 animate-in fade-in zoom-in duration-1000 delay-300 shrink-0">
           {/* 背景斜向板装饰 */}
           <div className="absolute top-[40%] left-[-20%] w-[140%] h-[100px] bg-gradient-to-r from-[#d4af37]/5 via-[#d4af37]/15 to-transparent -rotate-[12deg] rounded-full blur-xl"></div>
           
           {/* 时间轴主线 */}
           <div className="absolute top-1/2 left-0 w-full h-[2px] bg-white/10 -rotate-[12deg] overflow-hidden">
-            {/* 流动光效 */}
             <div className="absolute top-0 left-[-50%] w-[50%] h-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent animate-[flow_3s_linear_infinite]"></div>
           </div>
           
@@ -69,7 +68,6 @@ const XufeibaoPoster: React.FC = () => {
             }
           `}</style>
 
-          {/* 节点 1: 存入 */}
           <TimelineNode 
             pos="top-[25%] left-[15%]" 
             label="资金存入" 
@@ -77,7 +75,6 @@ const XufeibaoPoster: React.FC = () => {
             icon={<ShieldCheck className="w-3.5 h-3.5 text-[#001838]" />}
           />
 
-          {/* 节点 2: 增值 (核心位置) */}
           <TimelineNode 
             pos="top-[45%] left-[50%]" 
             label="稳步增值" 
@@ -86,7 +83,6 @@ const XufeibaoPoster: React.FC = () => {
             icon={<TrendingUp className="w-4 h-4 text-[#001838]" />}
           />
 
-          {/* 节点 3: 续费 */}
           <TimelineNode 
             pos="top-[65%] left-[85%]" 
             label="自动续费" 
@@ -94,11 +90,10 @@ const XufeibaoPoster: React.FC = () => {
             icon={<Sparkles className="w-3.5 h-3.5 text-[#001838]" />}
           />
           
-          {/* 金属质感装饰带 */}
           <div className="absolute bottom-[-100px] left-[-20%] w-[140%] h-[260px] bg-gradient-to-tr from-[#d1d5db]/10 via-[#f3f4f6]/20 to-transparent -rotate-[22deg] -z-10 blur-[2px] border-t border-white/20"></div>
         </div>
 
-        {/* 收益对比/优势展示 - 缩小间距 */}
+        {/* 收益对比/优势展示 */}
         <div className="grid grid-cols-2 gap-4 w-full mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400 shrink-0">
           <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-[#d4af37]/20 flex flex-col items-start space-y-1">
             <span className="text-[11px] text-[#d4af37] font-bold tracking-wider">活期便利</span>
@@ -110,7 +105,7 @@ const XufeibaoPoster: React.FC = () => {
           </div>
         </div>
 
-        {/* 风险提示区 - 进一步缩小间距以适应单屏 */}
+        {/* 风险提示区 */}
         <div className="mt-auto pb-24 text-left animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 overflow-y-auto no-scrollbar">
           <h3 className="text-sm font-black text-[#d4af37] mb-2 flex items-center">
             <span className="mr-2"><Info className="w-4 h-4" /></span>
@@ -124,7 +119,7 @@ const XufeibaoPoster: React.FC = () => {
         </div>
       </div>
 
-      {/* 底部操作栏 - 保持固定 */}
+      {/* 底部操作栏 */}
       <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-4 pb-8 z-50 bg-gradient-to-t from-[#001838] via-[#001838]/95 to-transparent flex space-x-3 items-end">
         <button 
           onClick={() => window.location.href = 'https://dc-hk.molifund.com/#/fund/fund/fundDetail?fund_code=HK0000499811'}
@@ -150,7 +145,6 @@ const TimelineNode: React.FC<{ pos: string, label: string, sub: string, active?:
       border-2 border-white/50
     `}>
       {icon}
-      {/* 涟漪效果 */}
       {active && <div className="absolute inset-0 rounded-full bg-white animate-ping opacity-20"></div>}
     </div>
     <div className="mt-3 flex flex-col items-center">

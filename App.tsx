@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import PlaceholderPage from './pages/PlaceholderPage';
@@ -13,15 +13,15 @@ import Me from './pages/Me';
 import XufeibaoPoster from './pages/XufeibaoPoster';
 import BottomNav from './components/BottomNav';
 
-// 滚动置顶组件：监听路由变化并重置滚动位置
+// 滚动置顶组件：使用 useLayoutEffect 确保在浏览器绘制前重置滚动，防止视觉跳变
 const ScrollToTop: React.FC<{ scrollRef: React.RefObject<HTMLElement | null> }> = ({ scrollRef }) => {
   const { pathname } = useLocation();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTo(0, 0);
     }
-  }, [pathname, scrollRef]);
+  }, [pathname]);
 
   return null;
 };
@@ -34,7 +34,7 @@ const MainContainer: React.FC<{ children: React.ReactNode, scrollRef: React.RefO
   return (
     <main 
       ref={scrollRef}
-      className={`flex-1 overflow-y-auto hide-scrollbar ${hideBottomNav ? 'pb-0' : 'pb-20'}`}
+      className={`flex-1 overflow-y-auto hide-scrollbar relative ${hideBottomNav ? 'pb-0 h-full' : 'pb-20'}`}
     >
       {children}
     </main>
@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen max-w-md mx-auto bg-gray-50 shadow-xl relative overflow-x-hidden">
+      <div className="flex flex-col h-screen max-w-md mx-auto bg-gray-50 shadow-xl relative overflow-hidden">
         {/* 全局水印层 */}
         <div className="watermark-overlay"></div>
 
