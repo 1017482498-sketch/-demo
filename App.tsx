@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import PlaceholderPage from './pages/PlaceholderPage';
 import PolicyDetail from './pages/PolicyDetail';
@@ -13,15 +13,36 @@ import Me from './pages/Me';
 import XufeibaoPoster from './pages/XufeibaoPoster';
 import BottomNav from './components/BottomNav';
 
+// 滚动置顶组件：监听路由变化并重置滚动位置
+const ScrollToTop: React.FC<{ scrollRef: React.RefObject<HTMLElement | null> }> = ({ scrollRef }) => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo(0, 0);
+    }
+  }, [pathname, scrollRef]);
+
+  return null;
+};
+
 const App: React.FC = () => {
+  const mainRef = useRef<HTMLElement>(null);
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen max-w-md mx-auto bg-gray-50 shadow-xl relative overflow-x-hidden">
         {/* 全局水印层 */}
         <div className="watermark-overlay"></div>
 
+        {/* 滚动重置逻辑 */}
+        <ScrollToTop scrollRef={mainRef} />
+
         {/* Main Content Area */}
-        <main className="flex-1 pb-20 overflow-y-auto hide-scrollbar">
+        <main 
+          ref={mainRef}
+          className="flex-1 pb-20 overflow-y-auto hide-scrollbar"
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/insurance-mall" element={<InsuranceMall />} />
@@ -37,7 +58,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
 
-        {/* Persistent Navigation - Now uses 'fixed' internally */}
+        {/* Persistent Navigation */}
         <BottomNav />
       </div>
     </Router>
