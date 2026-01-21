@@ -21,7 +21,8 @@ const FundServices: React.FC = () => {
       fee: "认购费率1%",
       minAmount: "100美元起投",
       risk: "中低风险",
-      currencyTag: "美元"
+      currencyTag: "美元",
+      url: "https://dc-hk.molifund.com/#/fund/fund/fundDetail?fund_code=HK0000365467"
     },
     {
       id: 2,
@@ -32,7 +33,8 @@ const FundServices: React.FC = () => {
       fee: "认购费率0",
       minAmount: "1000美元起投",
       risk: "中低风险",
-      currencyTag: "美元"
+      currencyTag: "美元",
+      url: "https://dc-hk.molifund.com/#/fund/fund/fundDetail?fund_code=HK0000365541"
     },
     {
       id: 3,
@@ -43,18 +45,8 @@ const FundServices: React.FC = () => {
       fee: "认购费率3%",
       minAmount: "1美元起投",
       risk: "中低风险",
-      currencyTag: "美元"
-    },
-    {
-      id: 4,
-      title: "博时美元货币市场基金N-USD派息",
-      cutoff: "认购及赎回截止时间: 每个交易日13:50",
-      returnRate: "+3.95%",
-      returnLabel: "七日年化",
-      fee: "认购费率0.6%",
-      minAmount: "0.1美元起投",
-      risk: "中低风险",
-      currencyTag: "美元"
+      currencyTag: "美元",
+      url: "https://dc-hk.molifund.com/#/fund/fund/fundDetail?fund_code=HK0000499811"
     }
   ];
 
@@ -62,8 +54,8 @@ const FundServices: React.FC = () => {
     navigate(-1);
   };
 
-  const handleFundClick = () => {
-    window.location.href = 'https://dc-hk.molifund.com/#/pages/index/transaction';
+  const handleFundClick = (url: string) => {
+    window.location.href = url;
   };
 
   return (
@@ -126,7 +118,7 @@ const FundServices: React.FC = () => {
         {funds.map(fund => (
           <div 
             key={fund.id} 
-            onClick={handleFundClick}
+            onClick={() => handleFundClick(fund.url)}
             className="bg-white rounded-xl p-5 shadow-sm border border-gray-50 space-y-4 active:bg-gray-50 transition-colors cursor-pointer"
           >
             {/* Title Section */}

@@ -26,10 +26,16 @@ const XufeibaoPoster: React.FC = () => {
       <div className="relative z-10 flex-1 flex flex-col items-center pt-4 px-8 text-center overflow-hidden">
         
         {/* 标题区 - 续费宝并增强金色效果 */}
-        <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-1000 shrink-0">
-          <h1 className="text-6xl font-black tracking-[0.25em] bg-gradient-to-b from-[#f5e6ab] via-[#d4af37] to-[#b08e4f] bg-clip-text text-transparent drop-shadow-[0_4px_10px_rgba(212,175,55,0.4)]">
+        <div className="space-y-3 animate-in fade-in slide-in-from-top-4 duration-1000 shrink-0 flex flex-col items-center">
+          {/* 港版余额宝 标签 */}
+          <div className="inline-flex items-center px-4 py-1.5 bg-gradient-to-r from-[#d4af37]/20 to-transparent border-l-2 border-[#d4af37] mb-1">
+             <span className="text-[11px] font-black text-[#f5e6ab] tracking-[0.2em] drop-shadow-sm">港版余额宝</span>
+          </div>
+
+          <h1 className="text-6xl font-black tracking-[0.25em] bg-gradient-to-b from-[#f5e6ab] via-[#d4af37] to-[#b08e4f] bg-clip-text text-transparent drop-shadow-[0_4px_10px_rgba(212,175,55,0.4)] leading-tight">
             续费宝
           </h1>
+          
           <div className="space-y-3">
             <p className="text-xl font-bold text-white tracking-wide">提前存入，缴费期自动缴费</p>
             <div className="flex items-center justify-center space-x-3 py-1">
@@ -71,37 +77,33 @@ const XufeibaoPoster: React.FC = () => {
           <TimelineNode 
             pos="top-[25%] left-[15%]" 
             label="资金存入" 
-            sub="灵活划转" 
+            sub="" 
             icon={<ShieldCheck className="w-3.5 h-3.5 text-[#001838]" />}
           />
 
           <TimelineNode 
             pos="top-[45%] left-[50%]" 
             label="稳步增值" 
-            sub="收益日结" 
+            sub="" 
             active
             icon={<TrendingUp className="w-4 h-4 text-[#001838]" />}
           />
 
           <TimelineNode 
             pos="top-[65%] left-[85%]" 
-            label="自动续费" 
-            sub="保障延续" 
+            label="保障延续" 
+            sub="" 
             icon={<Sparkles className="w-3.5 h-3.5 text-[#001838]" />}
           />
           
           <div className="absolute bottom-[-100px] left-[-20%] w-[140%] h-[260px] bg-gradient-to-tr from-[#d1d5db]/10 via-[#f3f4f6]/20 to-transparent -rotate-[22deg] -z-10 blur-[2px] border-t border-white/20"></div>
         </div>
 
-        {/* 收益对比/优势展示 */}
-        <div className="grid grid-cols-2 gap-4 w-full mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400 shrink-0">
-          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-[#d4af37]/20 flex flex-col items-start space-y-1">
+        {/* 收益对比/优势展示 - 移除智能代缴并居中 */}
+        <div className="flex justify-center w-full mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-400 shrink-0">
+          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-[#d4af37]/20 flex flex-col items-center space-y-1 px-10">
             <span className="text-[11px] text-[#d4af37] font-bold tracking-wider">活期便利</span>
             <span className="text-lg font-black text-white">随存随用</span>
-          </div>
-          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-4 border border-[#d4af37]/20 flex flex-col items-start space-y-1">
-            <span className="text-[11px] text-[#d4af37] font-bold tracking-wider">智能代缴</span>
-            <span className="text-lg font-black text-white">0手续费</span>
           </div>
         </div>
 
@@ -149,7 +151,7 @@ const TimelineNode: React.FC<{ pos: string, label: string, sub: string, active?:
     </div>
     <div className="mt-3 flex flex-col items-center">
       <span className={`text-[12px] font-black tracking-tighter ${active ? 'text-white' : 'text-white/60'}`}>{label}</span>
-      <span className="text-[9px] text-[#d4af37] font-bold opacity-80 mt-0.5 uppercase tracking-tight">{sub}</span>
+      {sub && <span className="text-[9px] text-[#d4af37] font-bold opacity-80 mt-0.5 uppercase tracking-tight">{sub}</span>}
     </div>
   </div>
 );

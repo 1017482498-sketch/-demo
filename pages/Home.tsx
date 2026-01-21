@@ -36,7 +36,8 @@ const Home: React.FC = () => {
       logo: LOGOS.BOC,
       tags: ['跨境便利', '中银理财'],
       brandColor: "bg-[#B31F24]",
-      borderColor: "border-red-100"
+      borderColor: "border-red-100",
+      applyUrl: "https://www.bochk.com/dam/more/accountopening/sc.html#download"
     },
     {
       name: "汇丰银行 (HSBC)",
@@ -168,6 +169,7 @@ const Home: React.FC = () => {
               tags={bank.tags} 
               brandColor={bank.brandColor}
               borderColor={bank.borderColor}
+              applyUrl={bank.applyUrl}
             />
           ))}
         </div>
@@ -218,9 +220,16 @@ const TypeIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, 
   </button>
 );
 
-const BankCard: React.FC<{ name: string, logo: string, tags: string[], brandColor: string, borderColor: string }> = ({ name, logo, tags, brandColor, borderColor }) => {
+const BankCard: React.FC<{ name: string, logo: string, tags: string[], brandColor: string, borderColor: string, applyUrl?: string }> = ({ name, logo, tags, brandColor, borderColor, applyUrl }) => {
   const [imgError, setImgError] = useState(false);
   const firstChar = name.charAt(0);
+
+  const handleApply = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (applyUrl) {
+      window.location.href = applyUrl;
+    }
+  };
 
   return (
     <div className={`flex items-center justify-between p-4 bg-white rounded-3xl border-2 ${borderColor} shadow-sm active:bg-gray-50 active:scale-[0.98] transition-all cursor-pointer group`}>
@@ -251,7 +260,12 @@ const BankCard: React.FC<{ name: string, logo: string, tags: string[], brandColo
         </div>
       </div>
       <div className="flex items-center space-x-2">
-        <button className="text-[11px] text-white bg-[#1a2b4b] px-4 py-2 rounded-xl font-bold shadow-lg shadow-blue-900/10 active:scale-90 transition-transform">申请</button>
+        <button 
+          onClick={handleApply}
+          className="text-[11px] text-white bg-[#1a2b4b] px-4 py-2 rounded-xl font-bold shadow-lg shadow-blue-900/10 active:scale-90 transition-transform"
+        >
+          申请
+        </button>
         <ChevronRight className="w-5 h-5 text-gray-200" />
       </div>
     </div>
