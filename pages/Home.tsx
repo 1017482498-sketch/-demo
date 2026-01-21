@@ -98,7 +98,7 @@ const Home: React.FC = () => {
           <div className="relative p-6 flex flex-col justify-center h-full space-y-4">
             <div className="space-y-0.5">
               <h2 className="text-xl font-bold tracking-wide">德萃保险 | DC INSURANCE</h2>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#c5a059] font-bold opacity-90">Professional Insurance Consulting</p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-[#c5a059] font-bold opacity-90">Professional Insurance Consulting</p>
             </div>
             <div className="space-y-1.5">
               <p className="text-xl font-semibold leading-tight">定制您的个人专属保险方案</p>
@@ -139,7 +139,7 @@ const Home: React.FC = () => {
           <div className="flex-1 p-6 flex flex-col justify-between">
             <div className="space-y-1.5">
               <h3 className="text-[20px] font-bold text-gray-800 tracking-tight">续费宝</h3>
-              <p className="text-[11px] text-gray-400 font-medium tracking-tight whitespace-nowrap">提前规划 · 自动缴费 · 灵活增值</p>
+              <p className="text-[12px] text-gray-400 font-medium tracking-tight whitespace-nowrap">提前规划 · 自动缴费 · 灵活增值</p>
             </div>
             <button className="w-[110px] bg-[#ff7b1c] text-white py-2.5 rounded-full text-xs font-bold shadow-lg shadow-orange-500/10">立即了解</button>
           </div>
@@ -175,14 +175,14 @@ const Home: React.FC = () => {
 
       {/* 8. Footer Info */}
       <div className="px-4 py-12 text-center space-y-4">
-        <div className="flex justify-center items-center space-x-6 text-[11px] text-gray-400 font-semibold">
+        <div className="flex justify-center items-center space-x-6 text-[12px] text-gray-400 font-semibold">
           <span className="cursor-pointer">服务声明</span>
           <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
           <span className="cursor-pointer">隐私政策</span>
           <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
           <span className="cursor-pointer">风险提示</span>
         </div>
-        <p className="text-[10px] text-gray-300 tracking-widest uppercase">DC INSURANCE CONSULTING LTD © 2024</p>
+        <p className="text-[11px] text-gray-300 tracking-widest uppercase">DC INSURANCE CONSULTING LTD © 2024</p>
       </div>
     </div>
   );
@@ -190,7 +190,6 @@ const Home: React.FC = () => {
 
 // --- Helper Components ---
 
-// 字号调大一号 (11px -> 12px)
 const TrustItem: React.FC<{ icon: React.ReactNode, label: string }> = ({ icon, label }) => (
   <div className="flex items-center space-x-1.5 text-[12px] text-gray-500 font-bold">
     <div className="text-[#c5a059]">{icon}</div>
@@ -198,15 +197,13 @@ const TrustItem: React.FC<{ icon: React.ReactNode, label: string }> = ({ icon, l
   </div>
 );
 
-// 字号调大一号 (11px -> 12px)
 const BannerTag: React.FC<{ text: string }> = ({ text }) => (
-  <div className="flex items-center space-x-1.5 text-[12px] text-white/80 font-bold">
+  <div className="flex items-center space-x-1.5 text-[13px] text-white/80 font-bold">
     <div className="w-1.5 h-1.5 bg-[#c5a059] rounded-full"></div>
     <span>{text}</span>
   </div>
 );
 
-// 字号调大一号并统一 (12px -> 13px)
 const NavIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string, onClick?: () => void }> = ({ icon, label, color, textColor, onClick }) => (
   <button onClick={onClick} className="flex flex-col items-center space-y-2.5 group cursor-pointer">
     <div className={`${color} ${textColor} p-4 rounded-[22px] group-active:scale-90 transition-all shadow-sm border border-white flex items-center justify-center`}>{icon}</div>
@@ -214,7 +211,6 @@ const NavIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, t
   </button>
 );
 
-// 字号统一 (12px -> 13px)
 const TypeIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string }> = ({ icon, label, color, textColor }) => (
   <button className="flex flex-col items-center space-y-2 group">
     <div className={`${color} ${textColor} p-4 rounded-full group-active:scale-90 transition-all shadow-sm border border-white`}>{icon}</div>
@@ -247,7 +243,7 @@ const BankCard: React.FC<{ name: string, logo: string, tags: string[], brandColo
           <span className="text-[15px] font-bold text-gray-800 tracking-tight">{name}</span>
           <div className="flex flex-wrap gap-1.5">
             {tags.map(tag => (
-              <span key={tag} className="text-[9px] px-2.5 py-0.5 bg-gray-50 text-gray-400 rounded-lg font-bold border border-gray-100/50">
+              <span key={tag} className="text-[10px] px-2.5 py-0.5 bg-gray-50 text-gray-400 rounded-lg font-bold border border-gray-100/50">
                 {tag}
               </span>
             ))}

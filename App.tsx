@@ -26,6 +26,21 @@ const ScrollToTop: React.FC<{ scrollRef: React.RefObject<HTMLElement | null> }> 
   return null;
 };
 
+// 内部组件用于处理动态 Class
+const MainContainer: React.FC<{ children: React.ReactNode, scrollRef: React.RefObject<HTMLElement | null> }> = ({ children, scrollRef }) => {
+  const location = useLocation();
+  const hideBottomNav = ['/product-detail', '/my-policy', '/reservation', '/fund-detail', '/xufeibao'].includes(location.pathname);
+
+  return (
+    <main 
+      ref={scrollRef}
+      className={`flex-1 overflow-y-auto hide-scrollbar ${hideBottomNav ? 'pb-0' : 'pb-20'}`}
+    >
+      {children}
+    </main>
+  );
+};
+
 const App: React.FC = () => {
   const mainRef = useRef<HTMLElement>(null);
 
@@ -39,10 +54,7 @@ const App: React.FC = () => {
         <ScrollToTop scrollRef={mainRef} />
 
         {/* Main Content Area */}
-        <main 
-          ref={mainRef}
-          className="flex-1 pb-20 overflow-y-auto hide-scrollbar"
-        >
+        <MainContainer scrollRef={mainRef}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/insurance-mall" element={<InsuranceMall />} />
@@ -56,7 +68,7 @@ const App: React.FC = () => {
             <Route path="/proposal" element={<PlaceholderPage title="保险建议书" />} />
             <Route path="/me" element={<Me />} />
           </Routes>
-        </main>
+        </MainContainer>
 
         {/* Persistent Navigation */}
         <BottomNav />
