@@ -130,10 +130,10 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 6. Promotional Banner */}
+      {/* 6. Promotional Banner - 跳转至新的海报页面 */}
       <div className="px-4">
         <div 
-          onClick={() => navigate('/fund-detail')}
+          onClick={() => navigate('/xufeibao')}
           className="bg-white rounded-[28px] overflow-hidden shadow-sm border border-gray-50 flex items-stretch h-[140px] cursor-pointer active:scale-[0.99] transition-transform"
         >
           <div className="flex-1 p-6 flex flex-col justify-between">

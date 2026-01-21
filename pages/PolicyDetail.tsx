@@ -186,7 +186,7 @@ const PolicyDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* 7. 续费宝 */}
+        {/* 7. 续费宝 - 跳转至海报页 */}
         <div className="bg-[#f2f8ff] rounded-[32px] p-6 border border-blue-100/50 shadow-sm space-y-5">
           <div className="flex items-center space-x-2">
              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
@@ -218,7 +218,7 @@ const PolicyDetail: React.FC = () => {
                   一键买入
                 </button>
                 <button 
-                  onClick={() => navigate('/fund-detail')}
+                  onClick={() => navigate('/xufeibao')}
                   className="flex-1 bg-gray-100 text-blue-600 py-3.5 rounded-2xl text-[13px] font-bold active:bg-gray-200 transition-colors"
                 >
                   了解详情

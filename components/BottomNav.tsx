@@ -8,7 +8,7 @@ const BottomNav: React.FC = () => {
   const location = useLocation();
 
   // 定义不需要显示底部主导航的页面路径
-  const hideOnPaths = ['/product-detail', '/my-policy', '/reservation', '/fund-detail'];
+  const hideOnPaths = ['/product-detail', '/my-policy', '/reservation', '/fund-detail', '/xufeibao'];
   if (hideOnPaths.includes(location.pathname)) {
     return null;
   }

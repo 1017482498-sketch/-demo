@@ -10,6 +10,7 @@ import ReservationForm from './pages/ReservationForm';
 import FundServices from './pages/FundServices';
 import FundDetail from './pages/FundDetail';
 import Me from './pages/Me';
+import XufeibaoPoster from './pages/XufeibaoPoster';
 import BottomNav from './components/BottomNav';
 
 const App: React.FC = () => {
@@ -28,6 +29,7 @@ const App: React.FC = () => {
             <Route path="/reservation" element={<ReservationForm />} />
             <Route path="/fund-services" element={<FundServices />} />
             <Route path="/fund-detail" element={<FundDetail />} />
+            <Route path="/xufeibao" element={<XufeibaoPoster />} />
             <Route path="/my-policy" element={<PolicyDetail />} />
             <Route path="/hk-card" element={<PlaceholderPage title="港卡服务" />} />
             <Route path="/proposal" element={<PlaceholderPage title="保险建议书" />} />
