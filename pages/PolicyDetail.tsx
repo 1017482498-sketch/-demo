@@ -207,7 +207,7 @@ const PolicyDetail: React.FC = () => {
              </div>
 
              <div className="space-y-1">
-                <h5 className="text-[15px] font-bold text-gray-800">保费提前存，缴费更从容</h5>
+                <h5 className="text-[15px] font-bold text-gray-800">提前存入、自动缴费</h5>
                 <p className="text-[12px] text-gray-400 leading-relaxed font-medium">
                   提前规划下期保费资金，到期自动缴付资金灵活使用，省心同时更有潜在收益
                 </p>

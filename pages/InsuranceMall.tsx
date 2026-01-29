@@ -1,105 +1,171 @@
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, MoreHorizontal } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { ArrowLeft, CheckCircle2, Flame, Star, Zap } from 'lucide-react';
 
 const InsuranceMall: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [activeCategory, setActiveCategory] = useState('全部');
   const [activeTag, setActiveTag] = useState('');
 
-  // 1. 按照要求修改标签顺序
-  const categories = ['全部', '储蓄险', '年金险', '医疗险', '重疾险'];
-  const tags = ['为孩子', '为自己', '为服务', '全家保障'];
+  // 处理从首页带过来的分类跳转
+  useEffect(() => {
+    const state = location.state as { category?: string };
+    if (state?.category) {
+      setActiveCategory(state.category);
+      // 清除 state，防止页面刷新时再次触发
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
-  // 2. 按照截图还原产品信息
+  const categories = ['全部', '储蓄险', '年金险', '医疗险', '重疾险'];
+  const tags = ['为孩子', '为自己', '为父母', '全家保障'];
+
   const products = [
     {
       id: 1,
       title: "环宇盈活储蓄保险计划",
-      company: "友邦保险",
+      company: "友邦保险 (AIA)",
       type: "储蓄险",
-      typeColor: "text-orange-400 bg-orange-50",
-      featureTag: "长期回报",
+      typeColor: "text-orange-600 bg-orange-50",
+      featureTag: "预期IRR 6.8%",
       featureColor: "text-blue-500 bg-blue-50",
-      desc: "更早回本及更高回报 灵活提取，货币转换",
-      footerText: "支持顾问 1对1咨询",
-      image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=200&h=200&auto=format&fit=crop",
+      desc: "支持9种货币转换，保单拆分功能领先，是资产跨代传承的首选方案。",
+      footerText: "财富传承 · 货币切换",
+      image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=400&auto=format&fit=crop",
       clickable: true
     },
     {
       id: 2,
-      title: "享悦即享年金保险",
-      company: "永明保险",
-      type: "年金险",
-      typeColor: "text-blue-400 bg-blue-50",
-      featureTag: "终身保障",
-      featureColor: "text-emerald-500 bg-emerald-50",
-      desc: "终身保证每月年金款项 自选附加保障",
-      footerText: "支持危疾保障",
-      image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=200&h=200&auto=format&fit=crop",
+      title: "信守明天多元货币计划",
+      company: "保诚保险 (Prudential)",
+      type: "储蓄险",
+      typeColor: "text-orange-600 bg-orange-50",
+      featureTag: "多元红利锁定",
+      featureColor: "text-indigo-500 bg-indigo-50",
+      desc: "第3个周年日起无限次转换货币，独有开支储蓄功能，助力全球财富配置。",
+      footerText: "分红潜力 · 灵活提取",
+      image: "https://images.unsplash.com/photo-1621416848469-8c615b742b83?q=80&w=400&auto=format&fit=crop",
       clickable: false
     },
     {
       id: 3,
-      title: "臻尚环球医疗保障-精选",
-      company: "安盛保险",
-      type: "医疗险",
-      typeColor: "text-purple-400 bg-purple-50",
-      featureTag: "覆盖全面",
-      featureColor: "text-orange-500 bg-orange-50",
-      desc: "多地区、多级别、多自付额选择",
-      footerText: "提供协助，涵盖多范畴",
-      image: "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=200&h=200&auto=format&fit=crop",
+      title: "万通延期年金",
+      company: "万通保险 (YF Life)",
+      type: "年金险",
+      typeColor: "text-blue-600 bg-blue-50",
+      featureTag: "QDAP扣税额$6万",
+      featureColor: "text-emerald-500 bg-emerald-50",
+      desc: "政府合资格延期年金，提供保证入息，锁定终身安稳的养老金流。",
+      footerText: "税务减免 · 养老保障",
+      image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=400&auto=format&fit=crop",
       clickable: false
     },
     {
       id: 4,
-      title: "诚保一生危疾保",
-      company: "保诚保险",
+      title: "享悦即享年金保险",
+      company: "永明保险 (Sun Life)",
+      type: "年金险",
+      typeColor: "text-blue-600 bg-blue-50",
+      featureTag: "保证每月年金",
+      featureColor: "text-orange-500 bg-orange-50",
+      desc: "即时入息方案，终身发放年金直到100岁，创造稳健的长寿现金流。",
+      footerText: "即时派息 · 终身收入",
+      image: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?q=80&w=400&auto=format&fit=crop",
+      clickable: false
+    },
+    {
+      id: 5,
+      title: "倍卫您医疗计划",
+      company: "富卫(香港) (FWD)",
+      type: "医疗险",
+      typeColor: "text-purple-600 bg-purple-50",
+      featureTag: "全数保障VHIS",
+      featureColor: "text-sky-500 bg-sky-50",
+      desc: "自愿医保灵活计划，全数保障住院手术费，涵盖未知既往症及癌症治疗。",
+      footerText: "全额理赔 · 高端私院",
+      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=400&auto=format&fit=crop",
+      clickable: false
+    },
+    {
+      id: 6,
+      title: "臻尚环球医疗保障",
+      company: "安盛保险 (AXA)",
+      type: "医疗险",
+      typeColor: "text-purple-600 bg-purple-50",
+      featureTag: "全球名医绿通",
+      featureColor: "text-rose-500 bg-rose-50",
+      desc: "专为精英家庭设计，提供全球顶级医疗资源预约及多重自付额选择。",
+      footerText: "顶级医疗 · 全球保障",
+      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=400&auto=format&fit=crop",
+      clickable: false
+    },
+    {
+      id: 7,
+      title: "跨越无限保",
+      company: "忠意保险 (Generali)",
       type: "重疾险",
-      typeColor: "text-red-400 bg-red-50",
-      featureTag: "多种疾病",
-      featureColor: "text-indigo-500 bg-indigo-50",
-      desc: "覆盖病况多",
-      footerText: "终身保障",
-      image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=200&h=200&auto=format&fit=crop",
+      typeColor: "text-red-600 bg-red-50",
+      featureTag: "癌症无限次赔付",
+      featureColor: "text-amber-500 bg-amber-50",
+      desc: "重疾险天花板，提供业内领先的无限次癌症赔付及中风、心脏病保障。",
+      footerText: "极致保额 · 终身守护",
+      image: "https://images.unsplash.com/photo-1454165833767-027ffea7028c?q=80&w=400&auto=format&fit=crop",
+      clickable: false
+    },
+    {
+      id: 8,
+      title: "诚保一生危疾保",
+      company: "保诚保险 (Prudential)",
+      type: "重疾险",
+      typeColor: "text-red-600 bg-red-50",
+      featureTag: "早期危疾豁免",
+      featureColor: "text-pink-500 bg-pink-50",
+      desc: "涵盖127种疾病，首10年赠送额外50%保额，涵盖早期危疾理赔与豁免。",
+      footerText: "全面覆盖 · 早期理赔",
+      image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=400&auto=format&fit=crop",
       clickable: false
     }
   ];
+
+  const filteredProducts = products.filter(p => {
+    if (activeCategory === '全部') return true;
+    return p.type === activeCategory;
+  });
 
   const handleBack = () => {
     navigate('/');
   };
 
   return (
-    <div className="flex flex-col min-h-full bg-[#f8fafc] isolate">
-      {/* 头部还原截图样式 */}
-      <header className="h-14 flex items-center bg-white sticky top-0 z-[999] px-4 border-b border-gray-50">
-        <button onClick={handleBack} className="p-1">
-          <ArrowLeft className="w-6 h-6 text-gray-800" />
+    <div className="flex flex-col min-h-full bg-[#f8fafc] animate-in fade-in duration-500">
+      {/* 头部固定 */}
+      <header className="h-16 flex items-center bg-white sticky top-0 z-[1000] px-4 border-b border-gray-100 shadow-sm">
+        <button onClick={handleBack} className="p-2 -ml-2 text-gray-800 active:scale-90 transition-transform">
+          <ArrowLeft className="w-7 h-7" />
         </button>
         <div className="flex-1 text-center">
-          <h1 className="text-lg font-bold text-gray-800">保险商城</h1>
+          <h1 className="text-xl font-bold text-gray-900 tracking-tight">保险商城</h1>
         </div>
         <div className="flex space-x-1.5 items-center">
-           <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
-           <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
-           <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+           <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+           <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
+           <div className="w-1.5 h-1.5 bg-gray-400 rounded-full"></div>
         </div>
       </header>
 
-      {/* 3. 主分类切换 (可滑动) */}
-      <div className="bg-white overflow-x-auto hide-scrollbar touch-pan-x">
-        <div className="px-4 py-3 flex space-x-3 items-center min-w-max">
+      {/* 1. 分类过滤导航 - 提升字号至 15px */}
+      <div className="bg-white overflow-x-auto hide-scrollbar sticky top-16 z-[999] border-b border-gray-50">
+        <div className="px-4 py-3.5 flex space-x-3 items-center min-w-max">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all ${
+              className={`px-7 py-2.5 rounded-full text-[15px] font-bold whitespace-nowrap transition-all duration-300 ${
                 activeCategory === cat 
-                  ? 'bg-blue-600 text-white shadow-md' 
-                  : 'bg-gray-100 text-gray-500'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-200 scale-105' 
+                  : 'bg-gray-100 text-gray-400 hover:bg-gray-200'
               }`}
             >
               {cat}
@@ -108,73 +174,117 @@ const InsuranceMall: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. 副标签 (可滑动) */}
-      <div className="overflow-x-auto hide-scrollbar touch-pan-x">
+      {/* 2. 热门人群标签 - 提升字号至 14px */}
+      <div className="overflow-x-auto hide-scrollbar">
         <div className="px-4 py-4 flex space-x-3 items-center min-w-max">
           {tags.map(tag => (
             <button
               key={tag}
               onClick={() => setActiveTag(tag === activeTag ? '' : tag)}
-              className={`px-5 py-2 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${
+              className={`px-6 py-2 rounded-xl text-[14px] font-bold whitespace-nowrap transition-all flex items-center space-x-1.5 ${
                 activeTag === tag 
-                  ? 'bg-gray-200 text-gray-800' 
-                  : 'bg-gray-100 text-gray-400'
+                  ? 'bg-blue-50 text-blue-600 border border-blue-100' 
+                  : 'bg-white text-gray-500 border border-gray-100 shadow-sm'
               }`}
             >
-              {tag}
+              {tag === '为孩子' && <Star className="w-3.5 h-3.5 fill-current" />}
+              {tag === '全家保障' && <Zap className="w-3.5 h-3.5 fill-current" />}
+              <span>{tag}</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* 5. 产品列表 */}
-      <div className="px-4 space-y-4 pb-10">
-        {products.map(product => (
+      {/* 3. 产品展示列表 */}
+      <div className="px-4 space-y-5 pb-16">
+        {filteredProducts.map(product => (
           <div 
             key={product.id} 
-            onClick={() => product.clickable && navigate('/product-detail')}
-            className={`bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-50 flex flex-col transition-transform ${product.clickable ? 'active:scale-[0.98] cursor-pointer' : 'opacity-90'}`}
+            onClick={() => product.id === 1 && navigate('/product-detail')}
+            className={`group bg-white rounded-[32px] overflow-hidden shadow-sm border border-gray-100 flex flex-col transition-all duration-300 relative ${
+              product.id === 1 ? 'active:scale-[0.98] cursor-pointer hover:shadow-md' : 'opacity-95'
+            }`}
           >
-            <div className="p-4 flex">
-              <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+            {/* 险种标签 - 提升字号至 12px */}
+            <div className={`absolute top-0 right-0 px-5 py-2 rounded-bl-2xl text-[12px] font-black shadow-sm z-10 border-l border-b border-gray-50/50 ${product.typeColor}`}>
+              {product.type}
+            </div>
+
+            <div className="p-5 flex">
+              <div className="w-28 h-28 rounded-2xl overflow-hidden flex-shrink-0 bg-gray-50 border border-gray-100 relative shadow-inner">
                 <img 
                   src={product.image} 
                   alt={product.title} 
-                  className="w-full h-full object-cover" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=400&h=400&auto=format&fit=crop";
+                  }}
                 />
-              </div>
-              <div className="ml-4 flex-1">
-                <div className="flex justify-between items-start">
-                  <div className="space-y-0.5">
-                    <h3 className="text-[16px] font-bold text-gray-900 leading-tight">{product.title}</h3>
-                    <p className="text-sm text-gray-400 font-medium">{product.company}</p>
-                  </div>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${product.typeColor}`}>
-                    {product.type}
-                  </span>
+                <div className="absolute top-1.5 left-1.5">
+                   <CheckCircle2 className="w-5 h-5 text-white fill-blue-500 opacity-90 shadow-sm" />
                 </div>
-                <div className="mt-2 flex items-center space-x-2">
-                  <span className={`text-[11px] font-bold px-2 py-0.5 rounded-md ${product.featureColor}`}>
+              </div>
+              <div className="ml-5 flex-1 flex flex-col justify-between min-h-[112px]">
+                <div className="space-y-1.5">
+                  <div className="flex justify-between items-start pr-12">
+                    <h3 className="text-[18px] font-bold text-gray-900 leading-tight group-hover:text-blue-600 transition-colors line-clamp-1">
+                      {product.title}
+                    </h3>
+                    {product.id === 7 && <Flame className="w-4 h-4 text-red-500 fill-current animate-pulse ml-1 shrink-0" />}
+                  </div>
+                  <p className="text-[12px] text-gray-400 font-bold uppercase tracking-wide">
+                    {product.company}
+                  </p>
+                </div>
+                
+                <div className="flex flex-wrap gap-2 mt-2">
+                  <span className={`text-[12px] font-black px-3 py-1 rounded-lg ${product.featureColor} tracking-tight`}>
                     {product.featureTag}
                   </span>
-                  <p className="text-[12px] text-gray-500 line-clamp-2 flex-1 font-medium leading-relaxed">{product.desc}</p>
                 </div>
+                
+                <p className="text-[14px] text-gray-500 line-clamp-2 font-medium leading-relaxed mt-2.5">
+                  {product.desc}
+                </p>
               </div>
             </div>
-            <div className="px-4 py-3 flex items-center justify-between border-t border-gray-50/50">
-              <span className="text-xs text-gray-400 font-medium">{product.footerText}</span>
-              <button className="bg-blue-600 text-white px-7 py-2.5 rounded-full text-sm font-bold shadow-lg shadow-blue-100 active:bg-blue-700 transition-colors">
+            
+            <div className="px-5 py-4 flex items-center justify-between border-t border-gray-50/50 bg-gray-50/40">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span className="text-[12px] text-gray-400 font-bold tracking-tight">
+                  {product.footerText}
+                </span>
+              </div>
+              <button className="bg-blue-600 text-white px-8 py-2.5 rounded-full text-sm font-black shadow-lg shadow-blue-200 active:bg-blue-700 transition-all hover:px-10">
                 了解详情
               </button>
             </div>
           </div>
         ))}
         
-        {/* 页脚提示 */}
-        <div className="pt-6 pb-4 text-center space-y-2">
-           <p className="text-[11px] text-gray-300">以上信息仅供参考，不构成任何投资或投保建议</p>
-           <p className="text-[11px] text-gray-300">投保前请与持牌顾问充分沟通</p>
-           <p className="text-[11px] text-gray-300">具体保障内容以保险合同条款为准</p>
+        {/* 空状态反馈 */}
+        {filteredProducts.length === 0 && (
+          <div className="py-24 flex flex-col items-center space-y-5 text-center">
+            <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100 text-gray-200">
+               <ArrowLeft className="w-12 h-12 rotate-180" />
+            </div>
+            <div className="space-y-1.5">
+              <p className="text-lg text-gray-400 font-bold">暂无相关产品</p>
+              <p className="text-sm text-gray-300 font-medium">请尝试切换其他分类或联系顾问咨询</p>
+            </div>
+          </div>
+        )}
+        
+        {/* 页脚说明 - 提升至 11px */}
+        <div className="pt-10 pb-6 text-center px-10 space-y-2.5 opacity-60">
+           <div className="h-px w-10 bg-gray-200 mx-auto"></div>
+           <p className="text-[11px] text-gray-400 leading-relaxed font-bold tracking-tight">
+             具体保障范围、不保事项及赔偿限额以保险公司签发的保单条款为准
+           </p>
+           <p className="text-[11px] text-gray-400 leading-relaxed font-bold tracking-tight">
+             DC Insurance Consulting Ltd. | 2024
+           </p>
         </div>
       </div>
     </div>

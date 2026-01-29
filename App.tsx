@@ -11,9 +11,11 @@ import FundServices from './pages/FundServices';
 import FundDetail from './pages/FundDetail';
 import Me from './pages/Me';
 import XufeibaoPoster from './pages/XufeibaoPoster';
+import Proposal from './pages/Proposal';
+import ProposalViewer from './pages/ProposalViewer';
 import BottomNav from './components/BottomNav';
 
-// 滚动置顶组件：使用 useLayoutEffect 确保在浏览器绘制前重置滚动，防止视觉跳变
+// 滚动置顶组件
 const ScrollToTop: React.FC<{ scrollRef: React.RefObject<HTMLElement | null> }> = ({ scrollRef }) => {
   const { pathname } = useLocation();
 
@@ -29,7 +31,14 @@ const ScrollToTop: React.FC<{ scrollRef: React.RefObject<HTMLElement | null> }> 
 // 内部组件用于处理动态 Class
 const MainContainer: React.FC<{ children: React.ReactNode, scrollRef: React.RefObject<HTMLElement | null> }> = ({ children, scrollRef }) => {
   const location = useLocation();
-  const hideBottomNav = ['/product-detail', '/my-policy', '/reservation', '/fund-detail', '/xufeibao'].includes(location.pathname);
+  const hideBottomNav = [
+    '/product-detail', 
+    '/my-policy', 
+    '/reservation', 
+    '/fund-detail', 
+    '/xufeibao',
+    '/proposal-viewer'
+  ].some(path => location.pathname.startsWith(path));
 
   return (
     <main 
@@ -64,8 +73,9 @@ const App: React.FC = () => {
             <Route path="/fund-detail" element={<FundDetail />} />
             <Route path="/xufeibao" element={<XufeibaoPoster />} />
             <Route path="/my-policy" element={<PolicyDetail />} />
+            <Route path="/proposal" element={<Proposal />} />
+            <Route path="/proposal-viewer/:type" element={<ProposalViewer />} />
             <Route path="/hk-card" element={<PlaceholderPage title="港卡服务" />} />
-            <Route path="/proposal" element={<PlaceholderPage title="保险建议书" />} />
             <Route path="/me" element={<Me />} />
           </Routes>
         </MainContainer>

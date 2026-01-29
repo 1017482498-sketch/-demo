@@ -55,9 +55,14 @@ const Home: React.FC = () => {
     }
   ];
 
+  // 统一跳转处理函数
+  const goToMall = (category: string) => {
+    navigate('/insurance-mall', { state: { category } });
+  };
+
   return (
     <div className="flex flex-col space-y-4 pb-10 bg-[#f8fafc] min-h-full">
-      {/* 1. Header Area - Logo 改回文字 */}
+      {/* 1. Header Area */}
       <div className="px-4 pt-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
            <div className="flex flex-col">
@@ -76,7 +81,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 2. Trust Indicators - 字号加大 (12px) */}
+      {/* 2. Trust Indicators */}
       <div className="px-4">
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 flex items-center justify-between shadow-sm border border-white/50">
           <TrustItem icon={<ShieldCheck className="w-3.5 h-3.5" />} label="持牌经纪机构" />
@@ -90,7 +95,6 @@ const Home: React.FC = () => {
       {/* 3. Hero Banner */}
       <div className="px-4">
         <div className="relative h-48 rounded-3xl overflow-hidden text-white shadow-2xl group cursor-pointer active:scale-[0.99] transition-transform">
-          {/* 背景图片 */}
           <div className="absolute inset-0">
              <img src={BRAND_LOGO} className="w-full h-full object-cover opacity-20 scale-150 grayscale brightness-200" alt="Banner Background" />
              <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b4b] via-[#1a2b4b]/90 to-[#2c4a85]/80"></div>
@@ -113,25 +117,25 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Main Grid Navigation - 调整为 4 列，字号加大一号至 13px */}
+      {/* 4. Main Grid Navigation */}
       <div className="px-4 grid grid-cols-4 gap-2 text-center pt-2">
-        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" />
-        <NavIcon icon={<ShoppingBag className="w-6 h-6" />} label="保险商城" color="bg-blue-50" textColor="text-blue-500" onClick={() => navigate('/insurance-mall')} />
+        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" onClick={() => navigate('/proposal')} />
+        <NavIcon icon={<ShoppingBag className="w-6 h-6" />} label="保险商城" color="bg-blue-50" textColor="text-blue-500" onClick={() => goToMall('全部')} />
         <NavIcon icon={<ShieldCheck className="w-6 h-6" />} label="我的保单" color="bg-indigo-50" textColor="text-indigo-500" onClick={() => navigate('/my-policy')} />
         <NavIcon icon={<TrendingUp className="w-6 h-6" />} label="甄选基金" color="bg-amber-50" textColor="text-amber-600" onClick={() => navigate('/fund-services')} />
       </div>
 
-      {/* 5. Insurance Categories - 字号保持与上方 NavIcon 一致 (13px) */}
-      <div className="px-4 py-4 border-y border-gray-100 bg-white">
+      {/* 5. Insurance Categories */}
+      <div className="px-4 py-4 border-y border-gray-100 bg-white shadow-sm">
         <div className="grid grid-cols-4 gap-4">
-          <TypeIcon icon={<Stethoscope className="w-6 h-6" />} label="高端医疗" color="bg-sky-50" textColor="text-sky-500" />
-          <TypeIcon icon={<HomeIcon className="w-6 h-6" />} label="养老储蓄" color="bg-indigo-50" textColor="text-indigo-500" />
-          <TypeIcon icon={<Coins className="w-6 h-6" />} label="年金险" color="bg-orange-50" textColor="text-orange-500" />
-          <TypeIcon icon={<User className="w-6 h-6" />} label="成人重疾" color="bg-blue-50" textColor="text-blue-500" />
+          <TypeIcon icon={<Stethoscope className="w-6 h-6" />} label="高端医疗" color="bg-sky-50" textColor="text-sky-500" onClick={() => goToMall('医疗险')} />
+          <TypeIcon icon={<HomeIcon className="w-6 h-6" />} label="养老储蓄" color="bg-indigo-50" textColor="text-indigo-500" onClick={() => goToMall('储蓄险')} />
+          <TypeIcon icon={<Coins className="w-6 h-6" />} label="年金险" color="bg-orange-50" textColor="text-orange-500" onClick={() => goToMall('年金险')} />
+          <TypeIcon icon={<User className="w-6 h-6" />} label="成人重疾" color="bg-blue-50" textColor="text-blue-500" onClick={() => goToMall('重疾险')} />
         </div>
       </div>
 
-      {/* 6. Promotional Banner - 跳转至新的海报页面 */}
+      {/* 6. Promotional Banner */}
       <div className="px-4">
         <div 
           onClick={() => navigate('/xufeibao')}
@@ -213,9 +217,9 @@ const NavIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, t
   </button>
 );
 
-const TypeIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string }> = ({ icon, label, color, textColor }) => (
-  <button className="flex flex-col items-center space-y-2 group">
-    <div className={`${color} ${textColor} p-4 rounded-full group-active:scale-90 transition-all shadow-sm border border-white`}>{icon}</div>
+const TypeIcon: React.FC<{ icon: React.ReactNode, label: string, color: string, textColor: string, onClick?: () => void }> = ({ icon, label, color, textColor, onClick }) => (
+  <button onClick={onClick} className="flex flex-col items-center space-y-2 group active:scale-95 transition-transform">
+    <div className={`${color} ${textColor} p-4 rounded-full shadow-sm border border-white flex items-center justify-center`}>{icon}</div>
     <span className="text-[13px] font-bold text-gray-700 whitespace-nowrap">{label}</span>
   </button>
 );
