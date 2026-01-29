@@ -71,7 +71,7 @@ const Proposal: React.FC = () => {
               <span className="text-xs text-gray-400 font-medium">{item.date}</span>
               <button 
                 onClick={() => {}}
-                className="bg-white border border-gray-200 px-6 py-2 rounded-xl text-sm font-bold text-gray-600 active:bg-gray-50 transition-colors shadow-sm"
+                className="bg-blue-600 px-6 py-2 rounded-xl text-sm font-bold text-white shadow-lg active:scale-95 transition-transform cursor-pointer"
               >
                 建议书
               </button>

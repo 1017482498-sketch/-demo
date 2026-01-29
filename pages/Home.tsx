@@ -14,7 +14,8 @@ import {
   Home as HomeIcon,
   Stethoscope,
   BellRing,
-  Coins
+  Coins,
+  Crown
 } from 'lucide-react';
 
 // 品牌相关图片 (保留用于 Banner 背景装饰)
@@ -92,9 +93,12 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Hero Banner */}
+      {/* 3. Hero Banner - 修改为不跳转 */}
       <div className="px-4">
-        <div className="relative h-48 rounded-3xl overflow-hidden text-white shadow-2xl group cursor-pointer active:scale-[0.99] transition-transform">
+        <div 
+          onClick={() => {}}
+          className="relative h-48 rounded-3xl overflow-hidden text-white shadow-2xl group cursor-pointer active:scale-[0.99] transition-transform"
+        >
           <div className="absolute inset-0">
              <img src={BRAND_LOGO} className="w-full h-full object-cover opacity-20 scale-150 grayscale brightness-200" alt="Banner Background" />
              <div className="absolute inset-0 bg-gradient-to-br from-[#1a2b4b] via-[#1a2b4b]/90 to-[#2c4a85]/80"></div>
@@ -117,9 +121,9 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Main Grid Navigation */}
+      {/* 4. Main Grid Navigation - 保留图标点击跳转 */}
       <div className="px-4 grid grid-cols-4 gap-2 text-center pt-2">
-        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" onClick={() => {}} />
+        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" onClick={() => navigate('/proposal')} />
         <NavIcon icon={<ShoppingBag className="w-6 h-6" />} label="保险商城" color="bg-blue-50" textColor="text-blue-500" onClick={() => goToMall('全部')} />
         <NavIcon icon={<ShieldCheck className="w-6 h-6" />} label="我的保单" color="bg-indigo-50" textColor="text-indigo-500" onClick={() => navigate('/my-policy')} />
         <NavIcon icon={<TrendingUp className="w-6 h-6" />} label="甄选基金" color="bg-amber-50" textColor="text-amber-600" onClick={() => navigate('/fund-services')} />
