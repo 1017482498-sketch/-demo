@@ -68,9 +68,9 @@ const Proposal: React.FC = () => {
             </div>
             
             <div className="flex items-center justify-between pt-2">
-              <span className="text-xs text-gray-300 font-medium">{item.date}</span>
+              <span className="text-xs text-gray-400 font-medium">{item.date}</span>
               <button 
-                onClick={() => navigate(`/proposal-viewer/${item.id}`)}
+                onClick={() => {}}
                 className="bg-white border border-gray-200 px-6 py-2 rounded-xl text-sm font-bold text-gray-600 active:bg-gray-50 transition-colors shadow-sm"
               >
                 建议书

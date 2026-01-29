@@ -119,7 +119,7 @@ const Home: React.FC = () => {
 
       {/* 4. Main Grid Navigation */}
       <div className="px-4 grid grid-cols-4 gap-2 text-center pt-2">
-        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" onClick={() => navigate('/proposal')} />
+        <NavIcon icon={<FileText className="w-6 h-6" />} label="保险建议书" color="bg-orange-50" textColor="text-orange-500" onClick={() => {}} />
         <NavIcon icon={<ShoppingBag className="w-6 h-6" />} label="保险商城" color="bg-blue-50" textColor="text-blue-500" onClick={() => goToMall('全部')} />
         <NavIcon icon={<ShieldCheck className="w-6 h-6" />} label="我的保单" color="bg-indigo-50" textColor="text-indigo-500" onClick={() => navigate('/my-policy')} />
         <NavIcon icon={<TrendingUp className="w-6 h-6" />} label="甄选基金" color="bg-amber-50" textColor="text-amber-600" onClick={() => navigate('/fund-services')} />
@@ -130,7 +130,7 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-4 gap-4">
           <TypeIcon icon={<Stethoscope className="w-6 h-6" />} label="高端医疗" color="bg-sky-50" textColor="text-sky-500" onClick={() => goToMall('医疗险')} />
           <TypeIcon icon={<HomeIcon className="w-6 h-6" />} label="养老储蓄" color="bg-indigo-50" textColor="text-indigo-500" onClick={() => goToMall('储蓄险')} />
-          <TypeIcon icon={<Coins className="w-6 h-6" />} label="年金险" color="bg-orange-50" textColor="text-orange-500" onClick={() => goToMall('年金险')} />
+          <TypeIcon icon={<HomeIcon className="w-6 h-6" />} label="年金险" color="bg-orange-50" textColor="text-orange-500" onClick={() => goToMall('年金险')} />
           <TypeIcon icon={<User className="w-6 h-6" />} label="成人重疾" color="bg-blue-50" textColor="text-blue-500" onClick={() => goToMall('重疾险')} />
         </div>
       </div>
